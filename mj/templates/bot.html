@@ -1,0 +1,112 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tumahara bhai</title>
+
+    <link rel="stylesheet"
+          href="{% static 'bot.css' %}">
+</head>
+
+<body>
+
+    <div class="chat-container">
+
+        <!-- HEADER -->
+        <div class="chat-header">
+
+            <div class="bot-icon">
+                🤖
+            </div>
+
+            <div>
+                <h2>Tumahara bhai</h2>
+                <span>● Online</span>
+            </div>
+
+        </div>
+
+
+        <!-- CHAT AREA -->
+        <div class="chat-body">
+
+            <div class="bot-message">
+                <div class="avatar">
+                    🤖
+                </div>
+
+                <div class="message">
+                    Hello! 👋<br>
+                    Main DjangoBot hoon.
+                    Mujhse kuch bhi pucho!
+                </div>
+            </div>
+
+
+            {% if response %}
+
+            <div class="user-message">
+
+                <div class="message">
+                    {{ request.POST.message }}
+                </div>
+
+                <div class="avatar">
+                    👤
+                </div>
+
+            </div>
+
+
+            <div class="bot-message">
+
+                <div class="avatar">
+                    🤖
+                </div>
+
+                <div class="message">
+                    {{ response|linebreaksbr }}
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- INPUT -->
+        <div class="chat-input">
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <input
+                    type="text"
+                    name="message"
+                    placeholder="Type your message..."
+                    autocomplete="off"
+                    required
+                >
+
+                <button type="submit">
+                    ➤
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

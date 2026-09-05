@@ -1,0 +1,19 @@
+{% load static %}  
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <title>Edit Employee</title>  
+    <link rel="stylesheet" href="{% static 'style.css' %}">  
+</head>  
+<body>  
+<h2>Edit Employee</h2>  
+<form method="POST" action="/update/{{ employee.id }}">  
+    {% csrf_token %}  
+    <input type="text" name="eid" value="{{ employee.eid }}"><br>  
+    <input type="text" name="ename" value="{{ employee.ename }}"><br>  
+    <input type="email" name="eemail" value="{{ employee.eemail }}"><br>  
+    <input type="text" name="econtact" value="{{ employee.econtact }}"><br>  
+    <button type="submit">Update</button>  
+</form>  
+</body>  
+</html>  
