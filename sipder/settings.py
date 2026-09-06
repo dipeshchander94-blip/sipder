@@ -30,10 +30,12 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'blemish-willing-shredder.ngrok-free.dev',
-     'sipder-1.onrender.com',
+    'sipder-1.onrender.com',
 ]
 CSRF_TRUSTED_ORIGINS = [
     'https://blemish-willing-shredder.ngrok-free.dev',
+    'https://sipder-1.onrender.com',
+
 ]
 
 
