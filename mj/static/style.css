@@ -1,290 +1,566 @@
 /* ============================================================
-   Employee Ledger — stylesheet for the Django employee app
-   Theme: an old office record-book / index-card system.
-   Palette:
-     --ink        #1F2A3C   (deep navy-ink, headings & text)
-     --ink-soft   #4B5A72   (secondary text)
-     --paper      #EFEAE0   (ledger paper background)
-     --card       #FFFDF8   (index-card white)
-     --rule       #C9BFA8   (ruled-line brown-grey)
-     --stamp      #B8552F   (rust ink-stamp accent)
-     --stamp-dark #8F3F21   (pressed stamp / hover)
-     --ok         #3E6B4F   (approve green, used sparingly)
-   Fonts:
-     display -> Georgia/serif ledger heading
-     body    -> system sans, quiet and legible
-     mono    -> IDs, contact numbers, tabular data
+   Employee Management System
+   Modern Ledger Theme + Navigation
    ============================================================ */
 
 :root {
-  --ink: #1F2A3C;
-  --ink-soft: #4B5A72;
-  --paper: #EFEAE0;
-  --card: #FFFDF8;
-  --rule: #C9BFA8;
-  --stamp: #B8552F;
-  --stamp-dark: #8F3F21;
-  --ok: #3E6B4F;
+    --ink: #1F2A3C;
+    --ink-soft: #4B5A72;
+    --paper: #EFEAE0;
+    --card: #FFFDF8;
+    --rule: #C9BFA8;
+    --stamp: #B8552F;
+    --stamp-dark: #8F3F21;
+    --ok: #3E6B4F;
 }
 
+
+/* ---------- Reset ---------- */
+
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  padding: 40px 20px;
-  background:
-    repeating-linear-gradient(
-      var(--paper),
-      var(--paper) 27px,
-      var(--rule) 28px
-    );
-  background-attachment: local;
-  color: var(--ink);
-  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.5;
+    margin: 0;
+    padding: 0 20px 60px;
+
+    background:
+        repeating-linear-gradient(
+            var(--paper),
+            var(--paper) 27px,
+            var(--rule) 28px
+        );
+
+    background-attachment: local;
+
+    color: var(--ink);
+
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.5;
 }
 
-/* ---------- Ledger heading ---------- */
+
+/* ============================================================
+   NAVIGATION BAR
+   ============================================================ */
+
+nav {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 0 auto 55px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    background: var(--ink);
+
+    border-radius: 0 0 8px 8px;
+
+    box-shadow:
+        0 5px 15px rgba(31, 42, 60, 0.20);
+
+    overflow: hidden;
+}
+
+
+/* Navbar links */
+
+nav a {
+    display: block;
+
+    padding: 16px 24px;
+
+    color: var(--card);
+
+    text-decoration: none;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+
+    border: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+nav a:hover {
+    background: var(--stamp);
+
+    color: white;
+
+    border: none;
+
+    transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   HEADINGS
+   ============================================================ */
+
+h1,
+h2 {
+    max-width: 900px;
+
+    margin: 0 auto 35px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-weight: 700;
+
+    color: var(--ink);
+}
 
 h2 {
-  max-width: 720px;
-  margin: 0 auto 24px;
-  padding-bottom: 10px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 700;
-  font-size: 28px;
-  letter-spacing: 0.02em;
-  color: var(--ink);
-  border-bottom: 3px double var(--ink);
-  position: relative;
+    padding-bottom: 12px;
+
+    font-size: 28px;
+
+    letter-spacing: 0.02em;
+
+    border-bottom: 3px double var(--ink);
+
+    position: relative;
 }
 
 h2::before {
-  content: "FILE No.";
-  display: block;
-  font-family: -apple-system, "Segoe UI", sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  color: var(--stamp);
-  margin-bottom: 4px;
+    content: "EMPLOYEE RECORD";
+
+    display: block;
+
+    font-family: -apple-system, "Segoe UI", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.18em;
+
+    color: var(--stamp);
+
+    margin-bottom: 7px;
 }
 
-/* ---------- Forms (Add / Edit Employee) ---------- */
+
+/* ============================================================
+   FORMS
+   ============================================================ */
 
 form {
-  max-width: 480px;
-  margin: 0 auto;
-  background: var(--card);
-  padding: 28px 28px 24px;
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  box-shadow: 4px 4px 0 rgba(31, 42, 60, 0.08);
+    width: 100%;
+
+    max-width: 480px;
+
+    margin: 0 auto;
+
+    background: var(--card);
+
+    padding: 32px;
+
+    border: 1px solid var(--rule);
+
+    border-radius: 5px;
+
+    box-shadow:
+        5px 5px 0 rgba(31, 42, 60, 0.10);
+}
+
+form p {
+    margin: 0 0 22px;
+}
+
+form p label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--ink-soft);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
 }
 
 form input[type="text"],
 form input[type="email"],
 form input[type="number"],
 form input[type="tel"],
+form input[type="password"],
 form select,
 form textarea {
-  display: block;
-  width: 100%;
-  margin: 0 0 18px;
-  padding: 10px 4px 8px;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 15px;
-  color: var(--ink);
-  background: transparent;
-  border: none;
-  border-bottom: 1.5px solid var(--rule);
-  border-radius: 0;
-  transition: border-color 0.15s ease, background 0.15s ease;
+    display: block;
+
+    width: 100%;
+
+    margin: 0;
+
+    padding: 12px 7px 10px;
+
+    font-family: "Courier New", Courier, monospace;
+
+    font-size: 15px;
+
+    color: var(--ink);
+
+    background: transparent;
+
+    border: none;
+
+    border-bottom: 1.5px solid var(--rule);
+
+    border-radius: 0;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
 }
 
 form input:focus,
 form select:focus,
 form textarea:focus {
-  outline: none;
-  border-bottom-color: var(--stamp);
-  background: rgba(184, 85, 47, 0.04);
+    outline: none;
+
+    border-bottom-color: var(--stamp);
+
+    background: rgba(184, 85, 47, 0.05);
 }
 
-/* Django form.as_p wraps each field in <p> -- keep the ledger-line rhythm */
-form p {
-  margin: 0 0 4px;
-}
 
-form p label {
-  display: block;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 4px;
-}
-
-/* ---------- Buttons styled like an ink stamp ---------- */
+/* ============================================================
+   BUTTONS
+   ============================================================ */
 
 button,
 input[type="submit"] {
-  display: inline-block;
-  margin-top: 6px;
-  padding: 10px 26px;
-  font-family: Georgia, serif;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--card);
-  background: var(--stamp);
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  transform: rotate(-1deg);
-  transition: transform 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
-  box-shadow: 2px 2px 0 rgba(31, 42, 60, 0.25);
+    display: inline-block;
+
+    margin-top: 12px;
+
+    padding: 12px 30px;
+
+    font-family: Georgia, serif;
+
+    font-weight: 700;
+
+    font-size: 14px;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    color: var(--card);
+
+    background: var(--stamp);
+
+    border: none;
+
+    border-radius: 4px;
+
+    cursor: pointer;
+
+    transform: rotate(-1deg);
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        box-shadow 0.15s ease;
+
+    box-shadow:
+        3px 3px 0 rgba(31, 42, 60, 0.25);
 }
 
 button:hover,
 input[type="submit"]:hover {
-  background: var(--stamp-dark);
-  transform: rotate(0deg) translateY(-1px);
-  box-shadow: 3px 3px 0 rgba(31, 42, 60, 0.3);
+    background: var(--stamp-dark);
+
+    transform: rotate(0deg) translateY(-2px);
+
+    box-shadow:
+        4px 4px 0 rgba(31, 42, 60, 0.3);
 }
 
 button:active,
 input[type="submit"]:active {
-  transform: translateY(1px) rotate(0deg);
-  box-shadow: 1px 1px 0 rgba(31, 42, 60, 0.25);
+    transform: translateY(1px);
+
+    box-shadow:
+        1px 1px 0 rgba(31, 42, 60, 0.25);
 }
 
-/* ---------- Employee Records table ---------- */
+
+/* ============================================================
+   EMPLOYEE TABLE
+   ============================================================ */
 
 table {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  border-collapse: collapse;
-  background: var(--card);
-  border: 1px solid var(--rule);
-  box-shadow: 4px 4px 0 rgba(31, 42, 60, 0.08);
+    width: 100%;
+
+    max-width: 1000px;
+
+    margin: 30px auto 0;
+
+    border-collapse: collapse;
+
+    background: var(--card);
+
+    border: 1px solid var(--rule);
+
+    border-radius: 5px;
+
+    overflow: hidden;
+
+    box-shadow:
+        5px 5px 0 rgba(31, 42, 60, 0.08);
 }
 
 table th {
-  text-align: left;
-  padding: 12px 14px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--card);
-  background: var(--ink);
+    text-align: left;
+
+    padding: 16px 18px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+
+    color: var(--card);
+
+    background: var(--ink);
 }
 
 table td {
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--rule);
-  font-size: 14px;
-  vertical-align: middle;
+    padding: 16px 18px;
+
+    border-bottom: 1px solid var(--rule);
+
+    font-size: 14px;
+
+    vertical-align: middle;
 }
 
-/* ID column reads like a stamped record number */
 table td:first-child {
-  font-family: "Courier New", Courier, monospace;
-  font-weight: 700;
-  color: var(--stamp);
+    font-family: "Courier New", Courier, monospace;
+
+    font-weight: 700;
+
+    color: var(--stamp);
 }
 
 table tr:last-child td {
-  border-bottom: none;
+    border-bottom: none;
 }
 
 table tr:nth-child(even) td {
-  background: rgba(31, 42, 60, 0.025);
+    background: rgba(31, 42, 60, 0.025);
 }
 
 table tr:hover td {
-  background: rgba(184, 85, 47, 0.06);
+    background: rgba(184, 85, 47, 0.06);
 }
 
-/* ---------- Links (row actions + "Add New Employee") ---------- */
+
+/* ============================================================
+   LINKS
+   ============================================================ */
 
 a {
-  color: var(--stamp);
-  text-decoration: none;
-  font-weight: 600;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.12s ease, color 0.12s ease;
+    color: var(--stamp);
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    border-bottom: 1px solid transparent;
+
+    transition:
+        border-color 0.15s ease,
+        color 0.15s ease;
 }
 
 a:hover {
-  border-bottom-color: var(--stamp);
-  color: var(--stamp-dark);
+    color: var(--stamp-dark);
+
+    border-bottom-color: var(--stamp);
 }
+
+
+/* Table links */
 
 table td a {
-  font-size: 13px;
-  letter-spacing: 0.02em;
+    font-size: 13px;
+
+    letter-spacing: 0.02em;
+
+    margin-right: 14px;
 }
 
-/* the "Delete" link — second <a> in the actions cell — reads as a warning */
 table td a:last-of-type {
-  color: #9B2C2C;
+    color: #9B2C2C;
 }
 
 table td a:last-of-type:hover {
-  color: #7A2020;
-  border-bottom-color: #9B2C2C;
+    color: #7A2020;
+
+    border-bottom-color: #9B2C2C;
+}
+
+
+/* ============================================================
+   ADD EMPLOYEE BUTTON / CENTER LINKS
+   ============================================================ */
+
+center {
+    margin-top: 35px;
 }
 
 center a {
-  display: inline-block;
-  margin-top: 28px;
-  padding: 10px 22px;
-  background: var(--ink);
-  color: var(--card);
-  border-radius: 3px;
-  font-family: Georgia, serif;
-  letter-spacing: 0.05em;
+    display: inline-block;
+
+    margin: 8px 8px 0;
+
+    padding: 12px 26px;
+
+    background: var(--ink);
+
+    color: var(--card);
+
+    border-radius: 4px;
+
+    font-family: Georgia, serif;
+
+    letter-spacing: 0.05em;
+
+    border: none;
 }
 
 center a:hover {
-  background: var(--ink-soft);
-  border-bottom-color: transparent;
+    background: var(--ink-soft);
+
+    border: none;
 }
 
-/* ---------- Small screens ---------- */
 
-@media (max-width: 640px) {
-  table, thead, tbody, th, td, tr {
-    display: block;
-  }
-  table thead {
-    display: none;
-  }
-  table tr {
-    margin-bottom: 14px;
-    border: 1px solid var(--rule);
-  }
-  table td {
-    border-bottom: 1px dashed var(--rule);
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-  }
-  table td:last-child {
-    border-bottom: none;
-  }
-  table td::before {
-    content: attr(data-label);
-    font-weight: 700;
-    font-size: 11px;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 0 12px 40px;
+    }
+
+    nav {
+        margin-bottom: 35px;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        border-radius: 0 0 8px 8px;
+    }
+
+    nav a {
+        text-align: center;
+
+        padding: 14px 15px;
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    nav a:last-child {
+        border-bottom: none;
+    }
+
+    h2 {
+        font-size: 23px;
+
+        margin-bottom: 28px;
+    }
+
+    form {
+        padding: 25px 20px;
+    }
+
+    form p {
+        margin-bottom: 20px;
+    }
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    table {
+        margin-top: 25px;
+    }
+
+    table thead {
+        display: none;
+    }
+
+    table tr {
+        margin-bottom: 18px;
+
+        border: 1px solid var(--rule);
+    }
+
+    table td {
+        display: flex;
+
+        justify-content: space-between;
+
+        gap: 15px;
+
+        padding: 14px 16px;
+
+        border-bottom: 1px dashed var(--rule);
+    }
+
+    table td:last-child {
+        border-bottom: none;
+    }
+
+    table td::before {
+        content: attr(data-label);
+
+        font-weight: 700;
+
+        font-size: 11px;
+
+        text-transform: uppercase;
+
+        color: var(--ink-soft);
+    }
 }

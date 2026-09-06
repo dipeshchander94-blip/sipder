@@ -5,18 +5,20 @@
     <title>Add Employee</title>  
     <link rel="stylesheet" href="{% static 'style.css' %}">  
 </head>  
-<body>  
+<body>
+    <nav>
+    <a href="/">Home</a>
+    <a href="/show">Employees</a>
+    <a href="/upload/">Upload Files</a>
+    <a href="/chat/">AI Chatbot</a>
+</nav>
+  
 <h2>Add Employee</h2>  
 <form method="POST" action="/emp">  
     {% csrf_token %}  
     {{ form.as_p }}  
     <button type="submit">Submit</button>  
 </form>  
-<nav>
-    <a href="/">Home</a>
-    <a href="/show">Employees</a>
-    <a href="/upload/">Upload Files</a>
-    <a href="/chat/">AI Chatbot</a>
-</nav>
+
 </body>  
 </html> 

@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">  
 </head>  
 <body>  
+    <nav>
+    <a href="/">Home</a>
+    <a href="/show">Employees</a>
+    <a href="/upload/">Upload Files</a>
+    <a href="/chat/">AI Chatbot</a>
+</nav>
+
 <h2>Edit Employee</h2>  
 <form method="POST" action="/update/{{ employee.id }}">  
     {% csrf_token %}  
@@ -15,11 +22,6 @@
     <input type="text" name="econtact" value="{{ employee.econtact }}"><br>  
     <button type="submit">Update</button>  
 </form>  
-<nav>
-    <a href="/">Home</a>
-    <a href="/show">Employees</a>
-    <a href="/upload/">Upload Files</a>
-    <a href="/chat/">AI Chatbot</a>
-</nav>
+
 </body>  
 </html>  

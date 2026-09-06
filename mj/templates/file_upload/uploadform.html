@@ -1,12 +1,24 @@
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>File Upload - TpointTech</title>
+
+    <link rel="stylesheet" href="{% static 'upload.css' %}">
 </head>
 
 <body>
+    <nav>
+    <a href="/">Home</a>
+    <a href="/show">Employees</a>
+    <a href="/upload/">Upload Files</a>
+    <a href="/chat/">AI Chatbot</a>
+</nav>
+
 
     <h1>Upload Your File</h1>
 
@@ -52,12 +64,7 @@
         {% endfor %}
 
     </div>
-    <nav>
-    <a href="/">Home</a>
-    <a href="/show">Employees</a>
-    <a href="/upload/">Upload Files</a>
-    <a href="/chat/">AI Chatbot</a>
-</nav>
+    
 
 </body>
 
