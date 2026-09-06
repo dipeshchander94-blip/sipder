@@ -6,6 +6,9 @@ from mj.bot import get_bot_response
 from mj.forms import EmployeeForm    
 from mj.models import Employee    
 
+def home(request):
+    return render(request, "index.html")
+
 def createEmp(request):     
     if request.method == "POST":    
         form = EmployeeForm(request.POST)    

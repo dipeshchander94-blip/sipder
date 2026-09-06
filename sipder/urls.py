@@ -28,6 +28,7 @@ from django.conf.urls.static import static
   
 urlpatterns = [  
     path('admin/', admin.site.urls),  
+    path('', views.home, name='home'),
     path('emp', views.createEmp),    
     path('show', views.show),    
     path('edit/<int:id>', views.edit),    
@@ -38,3 +39,4 @@ urlpatterns = [
     path('chat/', views.chat, name='chat'),  # Add this line for the chat view
      
 ]  
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
