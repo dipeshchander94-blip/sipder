@@ -26,11 +26,9 @@ SECRET_KEY = os.environ.get('django-insecure-m*xb@+@ao6fkfhxr__5n7d@$=3vjz&ws&um
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 ALLOWED_HOSTS = [
-    '192.168.1.9',
+    'sipder-1.onrender.com',
     'localhost',
     '127.0.0.1',
-    'blemish-willing-shredder.ngrok-free.dev',
-    'sipder-1.onrender.com',
 ]
 CSRF_TRUSTED_ORIGINS = [
     'https://blemish-willing-shredder.ngrok-free.dev',
