@@ -25,6 +25,7 @@ from django.urls import path
 from mj import views  
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
   
 urlpatterns = [  
     path('admin/', admin.site.urls),  
@@ -36,7 +37,19 @@ urlpatterns = [
     path('delete/<int:id>', views.destroy), 
     path('upload/', views.upload_file, name='upload_file'),
     path('delete/<int:file_id>/', views.delete_file, name='delete_file'), 
-    path('chat/', views.chat, name='chat'),  # Add this line for the chat view
+    path('chat/', views.chat, name='chat'),
+
+    path(
+    'login/',
+    auth_views.LoginView.as_view(template_name='login.html'),
+    name='login'),
+                 
+
+    path(
+    'logout/',
+    auth_views.LogoutView.as_view(),
+    name='logout'), 
+ # Add this line for the chat view
      
 ]  
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
